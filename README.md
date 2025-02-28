@@ -11,11 +11,11 @@ The repo is meant to train faster r-cnn on voc dataset. Specifically I trained o
 ## Sample Output by training Faster R-CNN on VOC 2007 dataset 
 Ground Truth(Left) | Prediction(right)
 </br>
-<img src="https://github.com/arifmarias/1.-FasterRCNN-PyTorch/assets/144267687/d9e8bfbb-d6c3-4cb7-955f-e401ebb9045c" width="300">
-<img src="https://github.com/arifmarias/1.-FasterRCNN-PyTorch/assets/144267687/2fe01174-dd0d-4fee-afbd-45b5b45307b3" width="300">
+<img src="https://github.com/explainingai-code/FasterRCNN-PyTorch/assets/144267687/d9e8bfbb-d6c3-4cb7-955f-e401ebb9045c" width="300">
+<img src="https://github.com/explainingai-code/FasterRCNN-PyTorch/assets/144267687/2fe01174-dd0d-4fee-afbd-45b5b45307b3" width="300">
 </br>
-<img src="https://github.com/arifmarias/1.-FasterRCNN-PyTorch/assets/144267687/39f095d3-8f50-4cd7-89cb-cee655cfa76d" width="300">
-<img src="https://github.com/arifmarias/1.-FasterRCNN-PyTorch/assets/144267687/2860bb29-3691-419a-b436-0d67f08d82e0" width="300">
+<img src="https://github.com/explainingai-code/FasterRCNN-PyTorch/assets/144267687/39f095d3-8f50-4cd7-89cb-cee655cfa76d" width="300">
+<img src="https://github.com/explainingai-code/FasterRCNN-PyTorch/assets/144267687/2860bb29-3691-419a-b436-0d67f08d82e0" width="300">
 
 ## Data preparation
 For setting up the VOC 2007 dataset:
@@ -23,7 +23,7 @@ For setting up the VOC 2007 dataset:
 * Download VOC 2007 test data from http://host.robots.ox.ac.uk/pascal/VOC/voc2007 and name it as `VOC2007-test` folder
 * Place both the directories inside the root folder of repo according to below structure
     ```
-    1.-FasterRCNN-PyTorch
+    FasterRCNN-Pytorch
         -> VOC2007
             -> JPEGImages
             -> Annotations
@@ -45,10 +45,10 @@ For setting up the VOC 2007 dataset:
 
 ## For training on your own dataset
 
-* Copy the VOC config(`config/voc.yaml`) and update the [dataset_params](https://github.com/arifmarias/1.-FasterRCNN-PyTorch/blob/main/config/voc.yaml#L1) and change the [task_name](https://github.com/arifmarias/1.-FasterRCNN-PyTorch/blob/main/config/voc.yaml#L35) as well as [ckpt_name](https://github.com/arifmarias/1.-FasterRCNN-PyTorch/blob/main/config/voc.yaml#L41) based on your own dataset.
+* Copy the VOC config(`config/voc.yaml`) and update the [dataset_params](https://github.com/explainingai-code/FasterRCNN-PyTorch/blob/main/config/voc.yaml#L1) and change the [task_name](https://github.com/explainingai-code/FasterRCNN-PyTorch/blob/main/config/voc.yaml#L35) as well as [ckpt_name](https://github.com/explainingai-code/FasterRCNN-PyTorch/blob/main/config/voc.yaml#L41) based on your own dataset.
 * Copy the VOC dataset(`dataset/voc.py`) class and make following changes:
-   * Update the classes list [here](https://github.com/arifmarias/1.-FasterRCNN-PyTorch/blob/main/dataset/voc.py#L61) (excluding background).
-   * Modify the [load_images_and_anns](https://github.com/arifmarias/1.-FasterRCNN-PyTorch/blob/main/dataset/voc.py#L13) method to returns a list of im_infos for all images, where each im_info is a dictionary with following keys:
+   * Update the classes list [here](https://github.com/explainingai-code/FasterRCNN-PyTorch/blob/main/dataset/voc.py#L61) (excluding background).
+   * Modify the [load_images_and_anns](https://github.com/explainingai-code/FasterRCNN-PyTorch/blob/main/dataset/voc.py#L13) method to returns a list of im_infos for all images, where each im_info is a dictionary with following keys:
      ```        
       im_info : {
 		'filename' : <image path>
@@ -68,7 +68,7 @@ For setting up the VOC 2007 dataset:
         }
   file_path(just used for debugging)
   ```
-* Change the training script to use your dataset [here](https://github.com/arifmarias/1.-FasterRCNN-PyTorch/blob/main/tools/train_torchvision_frcnn.py#L41)
+* Change the training script to use your dataset [here](https://github.com/explainingai-code/FasterRCNN-PyTorch/blob/main/tools/train_torchvision_frcnn.py#L41)
 * Then run training with the desired config passed as argument.
 
 
@@ -85,14 +85,14 @@ This repo has some differences from actual Faster RCNN paper.
 
 ## For modifications 
 * To change the fc dimension , change `fc_inner_dim` in config
-* To use a different backbone, make the change [here](https://github.com/arifmarias/1.-FasterRCNN-PyTorch/blob/main/model/faster_rcnn.py#L748) and also change `backbone_out_channels` in config
+* To use a different backbone, make the change [here](https://github.com/explainingai-code/FasterRCNN-PyTorch/blob/main/model/faster_rcnn.py#L748) and also change `backbone_out_channels` in config
 * To use hard negative mining change `roi_low_bg_iou` to say 0.1(this will ignore proposals with < 0.1 iou)
 * To use gradient accumulation change `acc_steps` in config to > 1
 
 # Quickstart
 * Create a new conda environment with python 3.8 then run below commands
-* ```git clone https://github.com/arifmarias/1.-FasterRCNN-PyTorch.git```
-* ```cd 1.-FasterRCNN-PyTorch```
+* ```git clone https://github.com/explainingai-code/FasterRCNN-PyTorch.git```
+* ```cd FasterRCNN-PyTorch```
 * ```pip install -r requirements.txt```
 * For training/inference use the below commands passing the desired configuration file as the config argument . 
 * ```python -m tools.train``` for training Faster R-CNN on voc dataset
